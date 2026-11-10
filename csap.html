@@ -118,40 +118,52 @@ requestAnimationFrame(fr);
 <section class="slide" id="maargin" data-transition="fade" style="background:#0A0F1E;color:#EDE8DC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#F2B544;font-weight:500">03 · Distributed computing in space</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:400;line-height:1.1;color:#EDE8DC">Three open problems in orbital compute</h2>
-<iframe class="embed" style="position:absolute;left:128px;top:290px;width:1000px;height:560px;border:0;background:transparent" srcdoc="&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;/head&gt;&lt;body&gt;&lt;style&gt;html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block;width:100%;height:100%}&lt;/style&gt;
+<iframe class="embed" style="position:absolute;left:128px;top:290px;width:1000px;height:560px;border:0;background:transparent" srcdoc="&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;/head&gt;&lt;body&gt;&lt;style&gt;html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block;width:100%;height:100%;border-radius:16px}&lt;/style&gt;
 &lt;canvas id=&quot;c&quot; width=&quot;1000&quot; height=&quot;560&quot;&gt;&lt;/canvas&gt;
 &lt;script&gt;
 var c=document.getElementById(&#x27;c&#x27;),x=c.getContext(&#x27;2d&#x27;);
-var W=1000,H=560,cx=500,cy=1970,RE=1500,RO=1800,T=12,LET=&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;;
+var W=1000,H=560,cx=500,cy=1970,RE=1500,RO=1800,T=12,LET=&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;,SP=62,uy=cy-RE;
 var sd=5;function rnd(){sd=(sd*16807)%2147483647;return sd/2147483647}
-var ST=[];for(var i=0;i&lt;90;i++)ST.push([rnd()*W,rnd()*420,rnd()]);
+var bg=document.createElement(&#x27;canvas&#x27;);bg.width=W;bg.height=H;var b=bg.getContext(&#x27;2d&#x27;);
+(function(){var i,j,g=b.createLinearGradient(0,0,0,H);g.addColorStop(0,&#x27;#02040A&#x27;);g.addColorStop(1,&#x27;#0A1226&#x27;);b.fillStyle=g;b.fillRect(0,0,W,H);
+b.save();b.translate(W*0.55,H*0.25);b.rotate(-0.35);var mw=b.createLinearGradient(0,-110,0,110);mw.addColorStop(0,&#x27;rgba(130,150,210,0)&#x27;);mw.addColorStop(0.5,&#x27;rgba(130,150,210,0.08)&#x27;);mw.addColorStop(1,&#x27;rgba(130,150,210,0)&#x27;);b.fillStyle=mw;b.fillRect(-900,-110,1800,220);b.restore();
+for(i=0;i&lt;280;i++){var px=rnd()*W,py=rnd()*480,r=rnd();b.globalAlpha=0.2+0.75*r*r;b.fillStyle=r&gt;0.86?&#x27;#CFE0FF&#x27;:(r&lt;0.08?&#x27;#FFE2C0&#x27;:&#x27;#EDE8DC&#x27;);b.beginPath();b.arc(px,py,0.35+r*r*1.5,0,6.3);b.fill()}b.globalAlpha=1;
+var ag=b.createRadialGradient(cx,cy,RE-2,cx,cy,RE+70);ag.addColorStop(0,&#x27;rgba(130,200,255,0.8)&#x27;);ag.addColorStop(0.12,&#x27;rgba(80,150,240,0.38)&#x27;);ag.addColorStop(1,&#x27;rgba(40,90,200,0)&#x27;);b.fillStyle=ag;b.beginPath();b.arc(cx,cy,RE+70,0,6.3);b.fill();
+var eg=b.createRadialGradient(cx,cy,RE-160,cx,cy,RE);eg.addColorStop(0,&#x27;#040914&#x27;);eg.addColorStop(0.75,&#x27;#0A1A34&#x27;);eg.addColorStop(0.965,&#x27;#143866&#x27;);eg.addColorStop(1,&#x27;#4A90E0&#x27;);b.fillStyle=eg;b.beginPath();b.arc(cx,cy,RE,0,6.3);b.fill();
+b.save();b.beginPath();b.arc(cx,cy,RE-1.5,0,6.3);b.clip();
+for(i=0;i&lt;170;i++){var ex=rnd()*W,ey=uy+rnd()*(H-uy+30);b.globalAlpha=0.05+rnd()*0.08;b.fillStyle=rnd()&lt;0.55?&#x27;#3E628F&#x27;:&#x27;#1F3B2F&#x27;;b.beginPath();b.ellipse(ex,ey,20+rnd()*80,3+rnd()*9,0,0,6.3);b.fill()}
+for(i=0;i&lt;36;i++){var gx=rnd()*W,gy=uy+12+rnd()*(H-uy),n=8+Math.floor(rnd()*30),s=6+rnd()*18;for(j=0;j&lt;n;j++){var rr=rnd();b.globalAlpha=0.35+rr*0.6;b.fillStyle=&#x27;#FFD27A&#x27;;b.beginPath();b.arc(gx+(rnd()-0.5)*s*2,gy+(rnd()-0.5)*s*0.45,0.5+rr*0.9,0,6.3);b.fill()}b.globalAlpha=0.12;b.fillStyle=&#x27;#FFB84A&#x27;;b.beginPath();b.ellipse(gx,gy,s*1.2,s*0.3,0,0,6.3);b.fill()}
+b.restore();b.globalAlpha=1})();
 function oy(px){var d=px-cx;return cy-Math.sqrt(RO*RO-d*d)}
 function sx(s){return -100+s*1200}
-function sat(px,py,a){x.globalAlpha=a;x.fillStyle=&#x27;#4E7FB8&#x27;;x.fillRect(px-17,py-4,11,8);x.fillRect(px+6,py-4,11,8);x.fillStyle=&#x27;#EDE8DC&#x27;;x.fillRect(px-5,py-6,10,12)}
-function pod(px,py,a){var d=px-cx,an=Math.atan(d/Math.sqrt(RO*RO-d*d)),ux=44*Math.cos(an),vy=44*Math.sin(an);x.globalAlpha=a*0.6;x.strokeStyle=&#x27;#7FB2E5&#x27;;x.lineWidth=1.5;x.beginPath();x.moveTo(px-ux,py-vy);x.lineTo(px+ux,py+vy);x.stroke();[-1,0,1].forEach(function(q){sat(px+q*ux,py+q*vy,a)});x.globalAlpha=1}
-function kv(px,py,f,a){for(var j=0;j&lt;5;j++){var bx=px-44+j*18,by=py+40;x.globalAlpha=a;if(j&lt;Math.round(f*5)){x.fillStyle=&#x27;#F2B544&#x27;;x.fillRect(bx,by,14,12)}else{x.strokeStyle=&#x27;#5A6886&#x27;;x.lineWidth=1.5;x.strokeRect(bx+0.5,by+0.5,13,11)}}x.globalAlpha=1}
-function fr(ms){var t=ms/1000+0.55*T,cyc=Math.floor(t/T),p=(t%T)/T;
-x.clearRect(0,0,W,H);
-ST.forEach(function(s){x.globalAlpha=0.2+0.5*s[2];x.fillStyle=&#x27;#EDE8DC&#x27;;x.beginPath();x.arc(s[0],s[1],1.1,0,6.3);x.fill()});x.globalAlpha=1;
-x.setLineDash([6,10]);x.strokeStyle=&#x27;rgba(127,178,229,0.35)&#x27;;x.lineWidth=2;x.beginPath();x.arc(cx,cy,RO,Math.PI*1.3,Math.PI*1.7);x.stroke();x.setLineDash([]);
-var g=x.createLinearGradient(0,cy-RE,0,H);g.addColorStop(0,&#x27;#1D3A66&#x27;);g.addColorStop(1,&#x27;#0E1B33&#x27;);x.fillStyle=g;x.beginPath();x.arc(cx,cy,RE,0,6.3);x.fill();
-x.strokeStyle=&#x27;rgba(127,178,229,0.45)&#x27;;x.lineWidth=8;x.beginPath();x.arc(cx,cy,RE+5,Math.PI*1.3,Math.PI*1.7);x.stroke();
-var uy=cy-RE,P=[],srv=p&lt;0.75?0:1;
-for(var k=0;k&lt;3;k++){var s=0.5+0.35*p-0.35*k,px=sx(s);P.push([px,oy(px),s])}
-var sp=P[srv];x.fillStyle=&#x27;rgba(127,178,229,0.16)&#x27;;x.beginPath();x.moveTo(sp[0],sp[1]+22);x.lineTo(cx-46,uy);x.lineTo(cx+46,uy);x.closePath();x.fill();
-x.strokeStyle=&#x27;rgba(127,178,229,0.6)&#x27;;x.lineWidth=2;x.beginPath();x.moveTo(sp[0],sp[1]+22);x.lineTo(cx,uy);x.stroke();
-if(p&gt;=0.45&amp;&amp;p&lt;0.75){var a=P[0],b=P[1];x.setLineDash([10,8]);x.strokeStyle=&#x27;#F2B544&#x27;;x.lineWidth=3;x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke();x.setLineDash([]);
-for(var j=0;j&lt;6;j++){var f=((p-0.45)/0.3*3+j/6)%1;x.fillStyle=&#x27;#F2B544&#x27;;x.globalAlpha=0.95;x.fillRect(a[0]+(b[0]-a[0])*f-6,a[1]+(b[1]-a[1])*f-6,12,12)}x.globalAlpha=1}
-x.fillStyle=&#x27;#EDE8DC&#x27;;x.beginPath();x.arc(cx,uy,9,0,6.3);x.fill();x.font=&#x27;24px Arial,sans-serif&#x27;;x.textAlign=&#x27;center&#x27;;x.fillText(&#x27;Terminal&#x27;,cx,uy+42);
-for(k=0;k&lt;3;k++){var q=P[k];if(q[2]&lt;-0.12||q[2]&gt;1.12)continue;var al=(k==0&amp;&amp;p&gt;=0.75)?0.45:1;pod(q[0],q[1],al);
+function sat(px,py,an,a){x.save();x.globalAlpha=a;x.translate(px,py);x.rotate(an);
+var pg=x.createLinearGradient(0,-5,0,5);pg.addColorStop(0,&#x27;#3B72C4&#x27;);pg.addColorStop(1,&#x27;#122A58&#x27;);x.fillStyle=pg;x.strokeStyle=&#x27;#9DB8E6&#x27;;x.lineWidth=0.6;
+[-29,10].forEach(function(o){x.fillRect(o,-5,19,10);x.strokeRect(o,-5,19,10);x.beginPath();x.moveTo(o+6.3,-5);x.lineTo(o+6.3,5);x.moveTo(o+12.7,-5);x.lineTo(o+12.7,5);x.moveTo(o,0);x.lineTo(o+19,0);x.stroke()});
+x.strokeStyle=&#x27;#9AA3B5&#x27;;x.lineWidth=1.2;x.beginPath();x.moveTo(-10,0);x.lineTo(10,0);x.stroke();
+var gd=x.createLinearGradient(-6,-6,6,6);gd.addColorStop(0,&#x27;#F6DE96&#x27;);gd.addColorStop(0.5,&#x27;#C89B3C&#x27;);gd.addColorStop(1,&#x27;#7A5A20&#x27;);x.fillStyle=gd;x.fillRect(-6,-6,12,12);
+x.fillStyle=&#x27;rgba(255,255,255,0.35)&#x27;;x.fillRect(-6,-6,12,3);x.fillStyle=&#x27;#E8ECF4&#x27;;x.beginPath();x.arc(0,7,3,0,Math.PI);x.fill();x.restore()}
+function pod(px,py,a){var d=px-cx,an=Math.atan(d/Math.sqrt(RO*RO-d*d)),ux=SP*Math.cos(an),vy=SP*Math.sin(an);
+x.save();x.globalAlpha=a*0.6;x.strokeStyle=&#x27;#8FDcFF&#x27;;x.lineWidth=1.2;x.shadowColor=&#x27;#8FDCFF&#x27;;x.shadowBlur=6;x.beginPath();x.moveTo(px-ux,py-vy);x.lineTo(px+ux,py+vy);x.stroke();x.restore();
+[-1,0,1].forEach(function(q){sat(px+q*ux,py+q*vy,an,a)})}
+function kv(px,py,f,a){x.save();for(var j=0;j&lt;5;j++){var bx=px-44+j*18,by=py+40;x.globalAlpha=a;if(j&lt;Math.round(f*5)){x.shadowColor=&#x27;#F2B544&#x27;;x.shadowBlur=8;x.fillStyle=&#x27;#F2B544&#x27;;x.fillRect(bx,by,14,12)}else{x.shadowBlur=0;x.strokeStyle=&#x27;#5A6886&#x27;;x.lineWidth=1.5;x.strokeRect(bx+0.5,by+0.5,13,11)}}x.restore()}
+function fr(ms){var t=ms/1000+0.55*T,cyc=Math.floor(t/T),p=(t%T)/T,k,q;
+x.globalAlpha=1;x.drawImage(bg,0,0);
+x.setLineDash([4,10]);x.strokeStyle=&#x27;rgba(127,178,229,0.3)&#x27;;x.lineWidth=1.5;x.beginPath();x.arc(cx,cy,RO,Math.PI*1.3,Math.PI*1.7);x.stroke();x.setLineDash([]);
+var P=[],srv=p&lt;0.75?0:1;for(k=0;k&lt;3;k++){var s=0.5+0.35*p-0.35*k,px=sx(s);P.push([px,oy(px),s])}
+var sp=P[srv],gb=x.createLinearGradient(sp[0],sp[1],cx,uy);gb.addColorStop(0,&#x27;rgba(150,205,255,0.45)&#x27;);gb.addColorStop(1,&#x27;rgba(150,205,255,0.05)&#x27;);x.fillStyle=gb;x.beginPath();x.moveTo(sp[0]-5,sp[1]+10);x.lineTo(sp[0]+5,sp[1]+10);x.lineTo(cx+42,uy);x.lineTo(cx-42,uy);x.closePath();x.fill();
+if(p&gt;=0.45&amp;&amp;p&lt;0.75){var a=P[0],bb=P[1];x.save();x.shadowColor=&#x27;#FF9F40&#x27;;x.shadowBlur=14;x.strokeStyle=&#x27;rgba(255,205,130,0.9)&#x27;;x.lineWidth=2.5;x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(bb[0],bb[1]);x.stroke();
+for(var j=0;j&lt;6;j++){var f=((p-0.45)/0.3*3+j/6)%1;x.fillStyle=&#x27;#FFE0A8&#x27;;x.beginPath();x.arc(a[0]+(bb[0]-a[0])*f,a[1]+(bb[1]-a[1])*f,5,0,6.3);x.fill()}x.restore()}
+x.save();x.translate(cx,uy);x.shadowColor=&#x27;#9FD0FF&#x27;;x.shadowBlur=10;x.fillStyle=&#x27;#DDE4F0&#x27;;x.fillRect(-1.5,-7,3,7);x.beginPath();x.ellipse(0,-10,13,6,0,0,Math.PI);x.fill();x.restore();
+x.font=&#x27;24px Arial,sans-serif&#x27;;x.textAlign=&#x27;center&#x27;;x.fillStyle=&#x27;rgba(4,8,18,0.82)&#x27;;x.fillRect(cx-58,uy+18,116,34);x.fillStyle=&#x27;#EDE8DC&#x27;;x.fillText(&#x27;Terminal&#x27;,cx,uy+43);
+for(k=0;k&lt;3;k++){q=P[k];if(q[2]&lt;-0.15||q[2]&gt;1.15)continue;var al=(k==0&amp;&amp;p&gt;=0.75)?0.45:1;pod(q[0],q[1],al);
 var f2=k==0?1:(k==1?(p&lt;0.45?0:(p&lt;0.75?(p-0.45)/0.3:1)):0);kv(q[0],q[1],f2,al);
 var nm=&#x27;Pod &#x27;+LET[(cyc+k)%26],tag=k==srv?&#x27;serving terminal&#x27;:((k==0&amp;&amp;p&gt;=0.75)?&#x27;setting&#x27;:(k==1&amp;&amp;p&lt;0.75?&#x27;next&#x27;:&#x27;&#x27;));
 x.globalAlpha=al;x.fillStyle=&#x27;#EDE8DC&#x27;;x.font=&#x27;bold 24px Arial,sans-serif&#x27;;x.fillText(nm,q[0],q[1]-46);
 if(tag){x.font=&#x27;24px Arial,sans-serif&#x27;;x.fillStyle=k==srv?&#x27;#7FB2E5&#x27;:&#x27;#A7B0C2&#x27;;x.fillText(tag,q[0],q[1]-76)}x.globalAlpha=1}
 x.textAlign=&#x27;left&#x27;;var n0=&#x27;Pod &#x27;+LET[cyc%26],n1=&#x27;Pod &#x27;+LET[(cyc+1)%26];
 var cap=p&lt;0.45?&#x27;1 · &#x27;+n0+&#x27; serves the terminal; its GPUs hold the conversation&#x27;:(p&lt;0.75?&#x27;2 · &#x27;+n0+&#x27; is setting: KV cache relays to &#x27;+n1:&#x27;3 · &#x27;+n1+&#x27; takes over, with no recomputation&#x27;);
-x.font=&#x27;28px Arial,sans-serif&#x27;;x.fillStyle=&#x27;#EDE8DC&#x27;;x.fillText(cap,0,32);
-x.fillStyle=&#x27;#F2B544&#x27;;x.fillRect(0,H-26,14,12);x.font=&#x27;24px Arial,sans-serif&#x27;;x.fillStyle=&#x27;#A7B0C2&#x27;;x.fillText(&#x27;KV cache = conversation memory&#x27;,24,H-14);
+x.font=&#x27;28px Arial,sans-serif&#x27;;x.fillStyle=&#x27;#EDE8DC&#x27;;x.fillText(cap,16,38);
+x.fillStyle=&#x27;rgba(4,8,18,0.82)&#x27;;x.fillRect(10,H-46,410,36);x.fillStyle=&#x27;#F2B544&#x27;;x.fillRect(22,H-34,14,12);x.font=&#x27;24px Arial,sans-serif&#x27;;x.fillStyle=&#x27;#EDE8DC&#x27;;x.fillText(&#x27;KV cache = conversation memory&#x27;,46,H-20);
 requestAnimationFrame(fr)}
 requestAnimationFrame(fr);
 &lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
