@@ -128,7 +128,7 @@ var ST=[];for(var i=0;i&lt;90;i++)ST.push([rnd()*W,rnd()*420,rnd()]);
 function oy(px){var d=px-cx;return cy-Math.sqrt(RO*RO-d*d)}
 function sx(s){return -100+s*1200}
 function sat(px,py,a){x.globalAlpha=a;x.fillStyle=&#x27;#4E7FB8&#x27;;x.fillRect(px-17,py-4,11,8);x.fillRect(px+6,py-4,11,8);x.fillStyle=&#x27;#EDE8DC&#x27;;x.fillRect(px-5,py-6,10,12)}
-function pod(px,py,a){var o=[[-26,-8],[26,-8],[0,18]];x.globalAlpha=a*0.6;x.strokeStyle=&#x27;#7FB2E5&#x27;;x.lineWidth=1.5;x.beginPath();x.moveTo(px+o[0][0],py+o[0][1]);x.lineTo(px+o[1][0],py+o[1][1]);x.lineTo(px+o[2][0],py+o[2][1]);x.closePath();x.stroke();o.forEach(function(q){sat(px+q[0],py+q[1],a)});x.globalAlpha=1}
+function pod(px,py,a){var d=px-cx,an=Math.atan(d/Math.sqrt(RO*RO-d*d)),ux=44*Math.cos(an),vy=44*Math.sin(an);x.globalAlpha=a*0.6;x.strokeStyle=&#x27;#7FB2E5&#x27;;x.lineWidth=1.5;x.beginPath();x.moveTo(px-ux,py-vy);x.lineTo(px+ux,py+vy);x.stroke();[-1,0,1].forEach(function(q){sat(px+q*ux,py+q*vy,a)});x.globalAlpha=1}
 function kv(px,py,f,a){for(var j=0;j&lt;5;j++){var bx=px-44+j*18,by=py+40;x.globalAlpha=a;if(j&lt;Math.round(f*5)){x.fillStyle=&#x27;#F2B544&#x27;;x.fillRect(bx,by,14,12)}else{x.strokeStyle=&#x27;#5A6886&#x27;;x.lineWidth=1.5;x.strokeRect(bx+0.5,by+0.5,13,11)}}x.globalAlpha=1}
 function fr(ms){var t=ms/1000+0.55*T,cyc=Math.floor(t/T),p=(t%T)/T;
 x.clearRect(0,0,W,H);
